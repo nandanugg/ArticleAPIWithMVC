@@ -24,26 +24,31 @@
       </tr>
     </thead>
     <tbody>
+      <!-- loop each article -->
       <% articles.forEach((article, index)=> { %>
         <tr>
           <th scope="row">
+            <!-- use index as item number -->
             <%= index + 1 %>
           </th>
           <td>
+            <!-- use article content property as second column value -->
             <%= article.content %>
           </td>
           <td class="w-10">
+            <!-- create a form for each article to delete based on id -->
             <form action="/delete" method="get" class="d-inline">
               <input type="hidden" name="id" value="<%= article.id %>">
               <button type="submit" class="btn btn-sm btn-danger">Delete</button>
             </form>
 
+            <!-- create a modal for each article to edit based on id -->
             <% const editModalId="editModal" + article.id %>
               <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
                 data-bs-target="#<%= editModalId %>">Edit</button>
-              <%- include('component/articleModal', { id: editModalId, title:"Edit article", method:"POST",
+              <!-- use modularized modal -->
+              <%- include('component/articleModal', { id: editModalId, title:"Edit article",
                 action:`/edit?id=${article.id}`, text: article.content }) %>
-
           </td>
         </tr>
         <% }) %>
@@ -52,8 +57,8 @@
     <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#articleModal">Add new data</button>
   </div>
 
-  <%- include('component/articleModal', { id:"articleModal", title:"Add new article", method:"POST", action:"/",
-    text: "" }) %>
+  <!-- use modularized modal -->
+  <%- include('component/articleModal', { id:"articleModal", title:"Add new article", action:"/", text: "" }) %>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"

@@ -1,3 +1,11 @@
+<!-- 
+Modularized modal, it requires:
+  1. modal id, as reference to help bootstrap show correct modal (id)
+  2. title (title)
+  3. form action (action)
+  4. textarea content (text)
+to be working properly
+-->
 <div class="modal fade" id="<%= id %>" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -7,7 +15,7 @@
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method="<%= method %>" action="<%= action %> ">
+      <form method="POST" action="<%= action %>">
         <div class="modal-body">
           <label for="article" class="col-form-label">Insert article</label>
           <textarea class="form-control" name="content"><%= text %> </textarea>
