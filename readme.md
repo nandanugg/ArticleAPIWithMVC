@@ -29,7 +29,7 @@ After that, copy the file & rename it to `.env`
 8. Change `model/index.js` config variable require to changed `config.js`
 9. `sequelize db:create`
 10. `sequelize model:create --name Articles --attributes content:text`
-11. `sequelzie db:migrate`
+11. `sequelize db:migrate`
 12. create `index.js`
     1.  Initiate express.js
     2.  Change view engine to ejs
