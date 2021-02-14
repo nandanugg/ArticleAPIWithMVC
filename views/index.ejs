@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="container mt-5">
+
+  <h2>Articles</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Content</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% articles.forEach((article, index)=> { %>
+        <tr>
+          <th scope="row">
+            <%= index + 1 %>
+          </th>
+          <td>
+            <%= article.content %>
+          </td>
+          <td class="w-10">
+            <form action="/delete" method="get" class="d-inline">
+              <input type="hidden" name="id" value="<%= article.id %>">
+              <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+            </form>
+
+            <% const editModalId="editModal" + article.id %>
+              <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                data-bs-target="#<%= editModalId %>">Edit</button>
+              <%- include('component/articleModal', { id: editModalId, title:"Edit article", method:"POST",
+                action:`/edit?id=${article.id}`, text: article.content }) %>
+
+          </td>
+        </tr>
+        <% }) %>
+  </table>
+  <div class="d-grid">
+    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#articleModal">Add new data</button>
+  </div>
+
+  <%- include('component/articleModal', { id:"articleModal", title:"Add new article", method:"POST", action:"/",
+    text: "" }) %>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"></script>
+</body>
+
+</html>
