@@ -1,22 +1,18 @@
 # Article API with MVC
 This app is a representation about how to use MVC pattern in basic web application
 
-----------
 ## Preparation
-----------
 ### Sequelize CLI
 This project is using sequelize-cli, if you don't have it (check by running `npm list -g --depth=0`) then install it by:
 ```bash
 npm install -g sequelize-cli
 ```
-----------
 
 ### Environment variable
 Please edit the [example.env](example.env) and insert your database credential & desired port to run this app
 
 After that, copy the file & rename it to `.env`
 
-----------
 
 ## Steps to make this project
 1. `git init`
